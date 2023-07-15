@@ -13,14 +13,14 @@
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
+ <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="./assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="./assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <!-- <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"> -->
   <!-- <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet"> -->
@@ -28,8 +28,11 @@
 
   <!-- Template Main CSS File -->
   <link href="./assets/css/style.css" rel="stylesheet">
-
+  <!-- DataTables -->
   <link href="//cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" >
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <!-- EXTRAS -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.0/css/buttons.dataTables.min.css">
@@ -360,16 +363,23 @@
               <h5 class="card-title">Aportaciones</h5>
     
               <!-- General Form Elements -->
-              <form id="formularioAportacionPrincipal" class="">
-                <div class="row mb-1">
-                  <label for="inputAnalista" class="col-sm-4 col-form-label">Analista: </label>
+              <form id="formularioAportacionPrincipal" method="POST">
+                <!-- <div class="row mb-1">
+                  <label for="idCAportacion" class="col-sm-4 col-form-label">IDCAportacion: </label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control form-control-sm" id="analista">
+                    <input type="text" class="form-control form-control-sm" id="idCAportacion">
+                  </div>
+                </div> -->
+
+                <div class="row mb-1">
+                  <label for="idAnalista" class="col-sm-4 col-form-label">IDAnalista: </label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="idAnalista">
                   </div>
                 </div>
     
                 <div class="row mb-1">
-                  <label for="date" class="col-sm-4 col-form-label">Fecha: </label>
+                  <label for="fecha" class="col-sm-4 col-form-label">Fecha: </label>
                   <div class="col-sm-8">
                     <input type="date" class="form-control form-control-sm" id="fecha">
                   </div>
@@ -441,28 +451,28 @@
                 </div>
     
                 <div class="row mb-1">
-                  <label for="inputAnalista" class="col-sm-4 col-form-label">Nómina: </label>
+                  <label for="nomina" class="col-sm-4 col-form-label">Nómina: </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control form-control-sm" id="nomina">
                   </div>
                 </div>
     
                 <div class="row mb-1">
-                  <label for="inputAnalista" class="col-sm-4 col-form-label">Periódo: </label>
+                  <label for="periodo" class="col-sm-4 col-form-label">Periódo: </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control form-control-sm" id="periodo">
                   </div>
                 </div>
     
                 <div class="row mb-1">
-                  <label for="inputAnalista" class="col-sm-4 col-form-label">Referencia: </label>
+                  <label for="referencia" class="col-sm-4 col-form-label">Referencia: </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control form-control-sm" id="referencia">
                   </div>
                 </div>
     
                 <div class="row mb-1">
-                  <label for="inputAnalista" class="col-sm-4 col-form-label">Referencia Bancaria: </label>
+                  <label for="refbanca" class="col-sm-4 col-form-label">Referencia Bancaria: </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control form-control-sm" id="refbanca">
                   </div>
@@ -503,6 +513,36 @@
                   <label class="col-sm-6 col-form-label">Nómina 5:</label>
                   <span class="input-group-text">$</span>
                   <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n5">
+                </div>
+
+                <div class="input-group mb-6">
+                  <label class="col-sm-6 col-form-label">Nómina 6:</label>
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n6">
+                </div>
+
+                <div class="input-group mb-6">
+                  <label class="col-sm-6 col-form-label">Nómina 7:</label>
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n7">
+                </div>
+
+                <div class="input-group mb-6">
+                  <label class="col-sm-6 col-form-label">Nómina 8:</label>
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n8">
+                </div>
+
+                <div class="input-group mb-6">
+                  <label class="col-sm-6 col-form-label">Nómina 9:</label>
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n9">
+                </div>
+
+                <div class="input-group mb-6">
+                  <label class="col-sm-6 col-form-label">Nómina 10:</label>
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n10">
                 </div>
     
                 <div class="input-group mb-6">
@@ -564,6 +604,12 @@
                   <span class="input-group-text">$</span>
                   <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="p5">
                 </div>
+
+                <div class="input-group mb-6">
+                  <label class="col-sm-6 col-form-label">Pago 6:</label>
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="p6">
+                </div>
     
                 <div class="input-group mb-6">
                   <label class="col-sm-6 col-form-label">Comision Vales:</label>
@@ -601,7 +647,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Consulta Clientes</h5>
+              <h5 class="card-title">Consulta CAportaciones</h5>
               <!-- Table with stripped rows -->
               <table id="datatableAportacionesPrincipal" class="table table-striped datatable">
                 <thead>
@@ -657,6 +703,294 @@
 
   </main><!-- End #main -->
 
+
+
+  <!-- MODAL PARA EDITAR -->
+  <div class="modal fade position-absolute w-100 top " id="modalCAportaciones" tabindex="-1" aria-labelledby="modalCAportacionesLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar CAportaciones</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST">
+            <div class="row mb-1">
+              <label for="idCAportacion" class="col-sm-4 col-form-label">IDCAportacion: </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="idCAportacion">
+              </div>
+            </div>
+
+            <div class="row mb-1">
+              <label for="idAnalista" class="col-sm-4 col-form-label">IDAnalista: </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm" id="idAnalista">
+              </div>
+            </div>
+  
+              <div class="row mb-1">
+                <label for="fecha" class="col-sm-4 col-form-label">Fecha: </label>
+                <div class="col-sm-8">
+                  <input type="date" class="form-control form-control-sm" id="fecha">
+                </div>
+              </div>
+  
+              <div class="row mb-1">
+                <label class="col-sm-4 col-form-label">Empresa:</label>
+                <div class="col-sm-8">
+                  <select class="form-select form-select-sm" aria-label="Default select example" id="empresa">
+                    <option selected></option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+  
+  
+              <div class="row mb-1">
+                <label class="col-sm-4 col-form-label">A favor:</label>
+                <div class="col-sm-8">
+                  <select class="form-select form-select-sm" aria-label="Default select example" id="afavor">
+                    <option selected></option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+  
+  
+              <div class="row mb-1">
+                <label class="col-sm-4 col-form-label">Tipo aportación:</label>
+                <div class="col-sm-8">
+                  <select class="form-select form-select-sm" aria-label="Default select example" id="taportacion">
+                    <option selected></option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+  
+  
+  
+              <div class="row mb-1">
+                <label class="col-sm-4 col-form-label">Cliente:</label>
+                <div class="col-sm-8">
+                  <select class="form-select form-select-sm" aria-label="Default select example" id="cliente">
+                    <option selected></option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+  
+  
+              <div class="row mb-1">
+                <label class="col-sm-4 col-form-label">Sindicato:</label>
+                <div class="col-sm-8">
+                  <select class="form-select form-select-sm" aria-label="Default select example" id="sindicato">
+                    <option selected></option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+  
+              <div class="row mb-1">
+                <label for="nomina" class="col-sm-4 col-form-label">Nómina: </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control form-control-sm" id="nomina">
+                </div>
+              </div>
+  
+              <div class="row mb-1">
+                <label for="periodo" class="col-sm-4 col-form-label">Periódo: </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control form-control-sm" id="periodo">
+                </div>
+              </div>
+  
+              <div class="row mb-1">
+                <label for="referencia" class="col-sm-4 col-form-label">Referencia: </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control form-control-sm" id="referencia">
+                </div>
+              </div>
+  
+              <div class="row mb-1">
+                <label for="refbanca" class="col-sm-4 col-form-label">Referencia Bancaria: </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control form-control-sm" id="refbanca">
+                </div>
+              </div>
+              <hr>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Fondo de ahorro:</label>
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="fahorro">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 1:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n1">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 2:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n2">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 3:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n3">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 4:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n4">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 5:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n5">
+              </div>
+
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 6:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n6">
+              </div>
+
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 7:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n7">
+              </div>
+
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 8:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n8">
+              </div>
+
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 9:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n9">
+              </div>
+
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Nómina 10:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="n10">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Total percepciones:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="totpercep">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Descuentos (Informativa):</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="desc">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Vales:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="vales">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Total traspaso facturar:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="tottrasfact">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Ruta:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="ruta">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Pago 1:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="p1">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Pago 2:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="p2">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Pago 3:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="p3">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Pago 4:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="p4">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Pago 5:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="p5">
+              </div>
+
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Pago 6:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="p6">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">Comision Vales:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="comvales">
+              </div>
+  
+              <div class="input-group mb-6">
+                <label class="col-sm-6 col-form-label">IVA:</label>
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control col-sm-6" aria-label="Amount (to the nearest dollar)" id="iva">
+              </div>
+  
+              <div class="row mb-6">
+                <div class="col-sm-6">
+                  <button type="button" id="btnActualizarCAportaciones" class="btn btn-primary col-sm-6">Actualizar</button>
+                </div>
+              </div>
+              
+  
+            </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -671,7 +1005,7 @@
 
   <!-- Vendor JS Files -->
   <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/vendor/quill/quill.min.js"></script>
+  <!-- <script src="../assets/vendor/quill/quill.min.js"></script> -->
 
   <!-- Template Main JS File -->
   <script src="./assets/js/main.js"></script>
@@ -681,16 +1015,18 @@
   <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="//cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-    <!-- EXTRAS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.print.min.js"></script>
-  
+  <!-- EXTRAS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.print.min.js"></script>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

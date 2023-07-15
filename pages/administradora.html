@@ -20,7 +20,7 @@
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <!-- <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet"> -->
   <!-- <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet"> -->
@@ -28,9 +28,14 @@
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
-
+  <!-- DataTables -->
   <link href="//cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" >
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- EXTRAS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.0/css/buttons.dataTables.min.css">
 
 </head>
 
@@ -357,32 +362,32 @@
               <h5 class="card-title">Administradora</h5>
     
               <!-- General Form Elements -->
-              <form>
-                <div class="row mb-1">
+              <form id="formularioAdm" method="post" >
+                <!-- <div class="row mb-1">
                   <label for="inputAnalista" class="col-sm-3 col-form-label">ID: </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control form-control-sm" id="inputAnalista">
                   </div>
-                </div>
+                </div> -->
 
                 <div class="row mb-1">
-                  <label for="inputAnalista" class="col-sm-3 col-form-label">Administradora: </label>
+                  <label for="nameAdm" class="col-sm-3 col-form-label">Administradora: </label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control form-control-sm" id="inputAnalista">
+                    <input type="text" class="form-control form-control-sm" id="nameAdm">
                   </div>
                 </div>
 
                 <div class="row mb-1">
-                  <label for="inputAnalista" class="col-sm-3 col-form-label">Siglas: </label>
+                  <label for="siglasAdm" class="col-sm-3 col-form-label">Siglas: </label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control form-control-sm" id="inputAnalista">
+                    <input type="text" class="form-control form-control-sm" id="siglasAdm">
                   </div>
                 </div>
 
 
                 <div class="row mb-3">
                   <div class="col-sm-4">
-                    <button type="submit" class="btn btn-primary col-sm-6">Guardar</button>
+                    <button id="btnAgregarAdm" type="submit" class="btn btn-primary col-sm-6">Guardar</button>
                   </div>
                 </div>
     
@@ -427,6 +432,50 @@
 
   </main><!-- End #main -->
 
+
+   <!-- MODAL PARA EDITAR -->
+   <div class="modal fade position-absolute w-100 top " id="modalAdm" tabindex="-1" aria-labelledby="modalAdmLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Administradora</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST">
+            <div class="row mb-1">
+              <label for="idAdm" class="col-sm-3 col-form-label">ID: </label>
+              <div class="col-sm-8">
+                <input readonly="readonly" type="text" placeholder="" class="form-control form-control-sm" id="idAdm" name="idAdm">
+              </div>
+            </div>
+            <div class="row mb-1">
+              <label for="nameAdm" class="col-sm-3 col-form-label">Administradora: </label>
+              <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control form-control-sm" id="nameAdm" name="nameAdm">
+              </div>
+            </div>
+
+            <div class="row mb-1">
+              <label for="abrevAdm" class="col-sm-3 col-form-label">Siglas: </label>
+              <div class="col-sm-8">
+                <input type="text" placeholder="" class="form-control form-control-sm" id="abrevAdm" name="abrevAdm">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-sm-4">
+                <button id="btnActualizarAdm" type="submit" class="btn btn-primary col-sm-8">Actualizar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
@@ -445,7 +494,7 @@
 
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/quill/quill.min.js"></script>
+  <!-- <script src="../assets/vendor/quill/quill.min.js"></script> -->
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
@@ -454,6 +503,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="//cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+  <!-- EXTRAS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.print.min.js"></script>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 

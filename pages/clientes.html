@@ -432,47 +432,53 @@
 
   </main><!-- End #main -->
 
- <!-- MODAL PARA EDITAR -->
+  <!-- MODAL PARA EDITAR -->
   <div class="modal fade position-absolute w-100 top " id="modalClientes" tabindex="-1" aria-labelledby="modalClientesLabel" aria-hidden="true">
-    <!-- <div class="modal-dialog">
-      <div class="modal-content"> -->
+    <div class="modal-dialog">
+      <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Cliente</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form method="POST">
+            <div class="row mb-1">
+              <label for="idCliente" class="col-sm-3 col-form-label">ID: </label>
+              <div class="col-sm-8">
+                <input readonly="readonly" type="text" placeholder="" class="form-control form-control-sm" id="idCliente" name="idCliente">
+              </div>
+            </div>
             <div class="row mb-1">
               <label for="nameCliente" class="col-sm-3 col-form-label">Cliente: </label>
               <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control form-control-sm" id="nameCliente">
+                <input type="text" placeholder="" class="form-control form-control-sm" id="nameCliente" name="nameCliente">
               </div>
             </div>
 
             <div class="row mb-1">
               <label for="abrevCliente" class="col-sm-3 col-form-label">Abreviatura: </label>
               <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control form-control-sm" id="abrevCliente">
+                <input type="text" placeholder="" class="form-control form-control-sm" id="abrevCliente" name="abrevCliente">
               </div>
             </div>
 
             <div class="row mb-1">
               <label for="contaCliente" class="col-sm-3 col-form-label">Contador: </label>
               <div class="col-sm-8">
-                <input type="text" placeholder="" class="form-control form-control-sm" id="contaCliente">
+                <input type="text" placeholder="" class="form-control form-control-sm" id="contaCliente" name="contaCliente">
               </div>
             </div>
 
             <div class="row mb-3">
               <div class="col-sm-4">
-                <button id="btnAgregarCliente" type="submit" class="btn btn-primary col-sm-8">Actualizar</button>
+                <button id="btnActualizarCliente" type="submit" class="btn btn-primary col-sm-8">Actualizar</button>
               </div>
             </div>
           </form>
         </div>
 
-      <!-- </div>
-    </div> -->
+      </div>
+    </div>
   </div>
 
 
@@ -514,6 +520,8 @@
   <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.html5.min.js"></script>
   <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.print.min.js"></script>
 
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </body>

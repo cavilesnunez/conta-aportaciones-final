@@ -2,6 +2,7 @@ const urlObtenerCliente = 'http://localhost:8080/conta-aportaciones/api/api-clie
 const urlAgregarCliente = 'http://localhost:8080/conta-aportaciones/api/api-clientes/agregarCliente.php'
 const urlEditarCliente = 'http://localhost:8080/conta-aportaciones/api/api-clientes/editarCliente.php'
 const urlBorrarCliente = 'http://localhost:8080/conta-aportaciones/api/api-clientes/borrarCliente.php'
+const urlActualizarCliente = 'http://localhost:8080/conta-aportaciones/api/api-clientes/actualizarCliente.php'
 
 // let listaClientes = []
 
@@ -91,7 +92,7 @@ const table = document.getElementById("datatableClientes");
 
 function leerClientes () {
     
-    const url = "http://localhost:8080/conta-aportaciones/api/api-clientes/obtenerCliente.php"
+    const url = urlObtenerCliente
     fetch(url)
     .then(r => r.json())
     .then(data => {
@@ -139,7 +140,7 @@ window.addEventListener("load",  () => {
 btnAgregar.addEventListener("click", function(e) {
     e.preventDefault();
     //alert("HOla mundo");
-    const url = "http://localhost:8080/conta-aportaciones/api/api-clientes/agregarCliente.php";
+    const url = urlAgregarCliente;
     const data = new FormData();
     
     const nameCliente = document.getElementById("nameCliente").value;
@@ -151,8 +152,11 @@ btnAgregar.addEventListener("click", function(e) {
     data.append('contaCliente',contaCliente);
 
     fetch(url,{method:'POST',body: data});
+
+    Swal.fire('Registro Exitoso');
+
     leerClientes();
-    formularioCliente.reset;
+    formularioCliente.reset();
 
 });
 
@@ -165,11 +169,12 @@ table.addEventListener("click", function(e){
     // console.log(e.target.value);
     if(e.target.id=="eliminar"){
         const id = e.target.value;
-        const url = "http://localhost:8080/conta-aportaciones/api/api-clientes/borrarCliente.php";
+        const url = urlBorrarCliente;
         const data = new FormData();
         data.append('id',id);
         fetch(url,{method:'POST',body: data});
         
+        Swal.fire('Registro Eliminado');
         leerClientes();
 
     }
@@ -179,33 +184,63 @@ table.addEventListener("click", function(e){
 
 //ACTUALIZAR CLIENTE
 
+
 const table1 = document.getElementById('datatableClientes');
 const modal = document.getElementById('modalClientes');
-const inputs = document.querySelectorAll('inputs');
-let count = 0;
+const inputs = document.querySelectorAll('input');
+const btnActualizarCliente = document.getElementById('btnActualizarCliente');
 
-
-window.addEventListener('click', (e)=>{
-    if (e.target.matches(".btn-warning")) {
+window.addEventListener('click', (e) => {
+    if (e.target.matches('.btn-warning')) {
         let data = e.target.parentElement.parentElement.children;
-
-        fillData(data)
-        modal.classList.toggle('translate')  
+        fillData(data);
+        modal.classList.toggle('translate');
     }
+});
 
-    if (e.target.matches(".btn-danger")) {
-        modal.classList.toggle('translate')  
-        count=0
+const fillData = (data) => {
+    let inputs = document.querySelectorAll('#modalClientes input');
+    let count = 0;
+    for (let index of inputs) {
+        index.value = data[count].textContent;
+        // console.log(index);
+        count += 1;
+        
     }
-})
+    
+    btnActualizarCliente.addEventListener('click', actualizarCliente);
 
-const fillData = (data)=>{
-    for(let index of inputs){
-        index.value = data[count].textContent
-        console.log(index)
-        count+=1
+};
+
+
+
+const actualizarCliente = (e) => {
+    if (e.target.id == 'btnActualizarCliente') {
+        const idCliente = e.target.value;
+        const url = urlActualizarCliente;
+
+        let data = new FormData();
+        data.append('idCliente', idCliente);
+
+        let nameCliente = document.getElementById('nameCliente').value;
+        let abrevCliente = document.getElementById('abrevCliente').value;
+        let contaCliente = document.getElementById('contaCliente').value;
+
+        data.append('nameCliente', nameCliente);
+        data.append('abrevCliente', abrevCliente);
+        data.append('contaCliente', contaCliente);
+
+        fetch(url, { method: 'POST', body: data })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                Swal.fire('Registro Actualizado');
+                leerClientes();
+                modal.classList.remove('translate'); // Cerrar el modal
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
-}
-
-
+};
 

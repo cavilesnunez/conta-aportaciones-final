@@ -46,7 +46,33 @@ const initDataTable=async() => {
     await listEmpresas();
 
     dataTable=$("#datatableAdministradoras").DataTable({
-        
+        // scrollX: "2000px",
+        lengthMenu: [
+            [ 10, 25, 50, 100, 300,  -1 ],
+            [ '10', '25', '50', '100', '300', 'Mostrar todo' ]
+        ],
+        buttons: [
+            'pageLength'
+        ],
+        dom: 'Blfrtip',
+        buttons: [
+            { extend: 'copy',
+            exportOptions: { modifier: {search: 'none'}}},
+            { extend: 'csv',
+            exportOptions: { modifier: {search: 'none'}}},
+            { extend: 'excel',
+            exportOptions: { modifier: {search: 'none'}}},
+            { extend: 'pdf',
+            exportOptions: { modifier: {search: 'none'}}},
+            { extend: 'print',
+            exportOptions: { modifier: {search: 'none'}}},
+        ],
+        columnDefs: [
+            { className : "dt-center", targets: [0, 3, 4, 5]},
+            { orderable: false, targets:[4, 5]},
+            { searchable: false, "targets": [1] },
+            { width: "50%", targets: [1] }
+        ],
         pageLength: 10,
         destroy: true,
         language:{
